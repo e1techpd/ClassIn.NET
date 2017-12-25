@@ -11,8 +11,8 @@ namespace ClassIn.NetUnitTest
         [TestMethod]
         public void TestGetUserCourseList()
         {
-            string sid = "2343898";
-            string secret = "yZXleTSR";
+            string sid = System.Configuration.ConfigurationSettings.AppSettings["SID"];
+            string secret = System.Configuration.ConfigurationSettings.AppSettings["Secret"];
             string action = "getUserCourseList";
             string methodType = "POST";
 

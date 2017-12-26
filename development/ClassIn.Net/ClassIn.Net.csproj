@@ -56,6 +56,7 @@
     <Compile Include="Model\CourseStatus.cs" />
     <Compile Include="Model\ErrorInfo.cs" />
     <Compile Include="Model\EEOResponse.cs" />
+    <Compile Include="Model\StudentInfo.cs" />
     <Compile Include="ModuleNames.cs" />
     <Compile Include="EEORestApiClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

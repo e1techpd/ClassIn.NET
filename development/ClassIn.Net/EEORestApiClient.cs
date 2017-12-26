@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Text;
 using Beyova;
+using static Beyova.HttpConstants;
 
 namespace EF.E1Technology.EEO
 {
@@ -79,11 +80,33 @@ namespace EF.E1Technology.EEO
                 data.AddIfNotNullOrEmpty("beginTime", (beginTime.ToUnixMillisecondsDateTime() / 1000).SafeToString());
                 data.AddIfNotNullOrEmpty("endTime", (endTime.ToUnixMillisecondsDateTime() / 1000).SafeToString());
 
-                return Invoke<List<CourseInfo>>(ModuleNames.Course, "getUserCourseList", HttpConstants.HttpMethod.Post, data);
+                return Invoke<List<CourseInfo>>(ModuleNames.Course, "getUserCourseList", HttpMethod.Post, data);
             }
             catch (Exception ex)
             {
                 throw ex.Handle(new { userAccount, beginTime, endTime });
+            }
+        }
+
+        /// <summary>
+        /// get student list
+        /// </summary>
+        /// <param name="page">current page, default equal to 1</param>
+        /// <param name="perpage">current perpage,default equal to 20</param>
+        /// <returns></returns>
+        public List<StudentInfo> GetStudentList(int? page = 1,int? perpage = 20)
+        {
+            try
+            {
+                var data = new Dictionary<string, string>();
+                data.AddIfNotNullOrEmpty("page", page.SafeToString());
+                data.AddIfNotNullOrEmpty("perpage", perpage.SafeToString());
+
+                return Invoke<List<StudentInfo>>(ModuleNames.Course, "getStudentList", HttpMethod.Post, data);
+            }
+            catch(Exception ex)
+            {
+                throw ex.Handle(new { page, perpage });
             }
         }
 

@@ -27,5 +27,12 @@ namespace EF.E1Technology.EEO.UnitTest
             var courseList = client.GetUserCourseList("23740020110");
             courseList.CheckNullOrEmptyCollection(nameof(courseList));
         }
+
+        [TestMethod]
+        public void GetStudentList()
+        {
+            var studentList = client.GetStudentList();
+            studentList.CheckNullOrEmptyCollection(nameof(studentList));
+        }
     }
 }

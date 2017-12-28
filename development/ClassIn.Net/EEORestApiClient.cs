@@ -10,7 +10,7 @@ namespace EF.E1Technology.EEO
     /// <summary>
     /// Class EEORestApiClient
     /// </summary>
-    public class EEORestApiClient
+    public partial class EEORestApiClient
     {
         #region Constants
 
@@ -59,59 +59,6 @@ namespace EF.E1Technology.EEO
             this.OrganizationId = organizationId;
         }
 
-        #region Public methods
-
-        /// <summary>
-        /// Gets the user course list.
-        /// </summary>
-        /// <param name="userAccount">The user account.</param>
-        /// <param name="beginTime">The begin time.</param>
-        /// <param name="endTime">The end time.</param>
-        /// <returns></returns>
-        public List<CourseInfo> GetUserCourseList(string userAccount, DateTime? beginTime = null, DateTime? endTime = null)
-        {
-            try
-            {
-                userAccount.CheckEmptyString(nameof(userAccount));
-
-                var data = new Dictionary<string, string>();
-
-                data.Add("userAccount", userAccount);
-                data.AddIfNotNullOrEmpty("beginTime", (beginTime.ToUnixMillisecondsDateTime() / 1000).SafeToString());
-                data.AddIfNotNullOrEmpty("endTime", (endTime.ToUnixMillisecondsDateTime() / 1000).SafeToString());
-
-                return Invoke<List<CourseInfo>>(ModuleNames.Course, "getUserCourseList", HttpMethod.Post, data);
-            }
-            catch (Exception ex)
-            {
-                throw ex.Handle(new { userAccount, beginTime, endTime });
-            }
-        }
-
-        /// <summary>
-        /// get student list
-        /// </summary>
-        /// <param name="page">current page, default equal to 1</param>
-        /// <param name="perpage">current perpage,default equal to 20</param>
-        /// <returns></returns>
-        public List<StudentInfo> GetStudentList(int? page = 1,int? perpage = 20)
-        {
-            try
-            {
-                var data = new Dictionary<string, string>();
-                data.AddIfNotNullOrEmpty("page", page.SafeToString());
-                data.AddIfNotNullOrEmpty("perpage", perpage.SafeToString());
-
-                return Invoke<List<StudentInfo>>(ModuleNames.Course, "getStudentList", HttpMethod.Post, data);
-            }
-            catch(Exception ex)
-            {
-                throw ex.Handle(new { page, perpage });
-            }
-        }
-
-        #endregion
-
         /// <summary>
         /// Invokes the specified module name.
         /// </summary>
@@ -148,7 +95,10 @@ namespace EF.E1Technology.EEO
             }
             else if (responseObject.ErrorInfo.ErrorNumber != 1)
             {
-                throw exception.Handle(new { moduleName, actionName, httpMethod, data, utcDateTime, error = responseObject.ErrorInfo });
+                throw new Exception(responseObject.ErrorInfo.ErrorMessage);
+                //exception = new Exception(responseObject.ErrorInfo.ErrorMessage);
+                //throw exception.Handle(new { moduleName, actionName, httpMethod, data, utcDateTime, error = responseObject.ErrorInfo });
+                //throw exception;
             }
 
             return responseObject.Data;

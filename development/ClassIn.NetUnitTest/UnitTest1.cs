@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Beyova.Api.RestApi;
 using EF.E1Technology.EEO;
 using Beyova;
+using System.Text;
 
 namespace EF.E1Technology.EEO.UnitTest
 {
@@ -33,6 +34,54 @@ namespace EF.E1Technology.EEO.UnitTest
         {
             var studentList = client.GetStudentList();
             studentList.CheckNullOrEmptyCollection(nameof(studentList));
+        }
+
+        [TestMethod]
+        public void Register()
+        {
+            string number = (new Random()).CreateRandomNumberString(8);
+            var telephone = string.Format("189{0}",number);
+            var nickname = "ladybug";
+            var password = "";
+            var md5password = "Init1234!".ToMD5String(Encoding.UTF8);
+            var FileData = "";
+            var studentUID = client.Register(telephone,nickname,password,md5password,FileData);
+            studentUID.CheckNullObject(nameof(studentUID));
+
+        }
+
+        [TestMethod]
+        public void AddTeacher()
+        {
+            var teacherAccount = string.Format("199{0}",(new Random()).CreateRandomNumberString(8));
+            var teacherName = "Newton Wilson";
+            var FileData = "";
+            var teacherUID = client.AddTeacher(teacherAccount,teacherName,FileData);
+            teacherUID.CheckNullObject(nameof(teacherUID));
+        }
+
+        [TestMethod]
+        public void AddCourse()
+        {
+
+        }
+
+        [TestMethod]
+        public void AddCourseClass()
+        {
+
+        }
+
+        [TestMethod]
+        public void AddCourseClassMultiple()
+        {
+
+        }
+
+        [TestMethod]
+        public void AddClassStudentMultiple()
+        {
+
         }
     }
 }

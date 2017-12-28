@@ -50,12 +50,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EEORestApiClientInstance.cs" />
     <Compile Include="Extension\UnixTimeSerializer.cs" />
     <Compile Include="Model\ClassInfo.cs" />
+    <Compile Include="Model\Enum\IdentityType.cs" />
+    <Compile Include="Model\Result\BaseResult.cs" />
+    <Compile Include="Model\Result\CourseResult.cs" />
+    <Compile Include="Model\CourseDetail.cs" />
+    <Compile Include="Model\Course.cs" />
     <Compile Include="Model\CourseInfo.cs" />
-    <Compile Include="Model\CourseStatus.cs" />
+    <Compile Include="Model\Enum\CourseStatus.cs" />
     <Compile Include="Model\ErrorInfo.cs" />
     <Compile Include="Model\EEOResponse.cs" />
+    <Compile Include="Model\CourseStudent.cs" />
+    <Compile Include="Model\Student.cs" />
     <Compile Include="Model\StudentInfo.cs" />
     <Compile Include="ModuleNames.cs" />
     <Compile Include="EEORestApiClient.cs" />

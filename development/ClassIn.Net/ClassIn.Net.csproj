@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="EEORestApiClientInstance.cs" />
     <Compile Include="Extension\UnixTimeSerializer.cs" />
+    <Compile Include="Model\Class1.cs" />
     <Compile Include="Model\ClassInfo.cs" />
     <Compile Include="Model\Enum\IdentityType.cs" />
     <Compile Include="Model\Result\BaseResult.cs" />

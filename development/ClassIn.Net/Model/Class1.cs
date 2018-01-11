@@ -8,5 +8,12 @@ namespace EF.E1Technology.EEO.Model
 {
     class Class1
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        public void method1()
+        {
+
+        }
     }
 }

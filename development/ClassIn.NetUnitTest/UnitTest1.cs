@@ -63,7 +63,7 @@ namespace EF.E1Technology.EEO.UnitTest
         [TestMethod]
         public void AddCourse()
         {
-
+            Console.WriteLine("ABC");
         }
 
         [TestMethod]
